@@ -11,11 +11,11 @@ class User extends BDD
   private ?string $lastname;
   private ?string $password;
 
-  protected ?pdo $bdd;
+  private ?pdo $bdd;
 
   public function __construct()
   {
-    
+    $this->bdd = $this->getPDO();
   }
 
   //fonction permettant de créer un utilisateur en BDD
@@ -40,7 +40,7 @@ class User extends BDD
 
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO user (login, firstname, lastname, password) VALUES (:login, :firstname, :lastname, :password)";
+    $sql = "INSERT INTO Users (login, firstname, lastname, password) VALUES (:login, :firstname, :lastname, :password)";
     $stmt = $this->bdd->prepare($sql);
     $stmt->execute([
       ":login" => $login,
@@ -57,7 +57,7 @@ class User extends BDD
 
   public function loginVerification(string $login): bool
   {
-    $sql = "SELECT * FROM user WHERE login = :login";
+    $sql = "SELECT * FROM Users WHERE login = :login";
     $stmt = $this->bdd->prepare($sql);
     $stmt->execute([":login" => $login]);
     if ($stmt->rowCount() > 0) {
