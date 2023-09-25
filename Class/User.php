@@ -3,8 +3,6 @@
 require_once "Bdd.php";
 class User extends BDD
 {
-
-
   private ?int $id;
   private ?string $login;
   private ?string $firstname;
@@ -20,7 +18,7 @@ class User extends BDD
 
   //fonction permettant de créer un utilisateur en BDD
 
-  public function createUser(string $login, string $firstname, string $lastname, string $password, string $password_confirm): bool
+  public function createUser(string $login, string $firstname, string $lastname, string $password, string $password_confirm): string
   {
 
     $login = trim(htmlspecialchars($login));
@@ -30,12 +28,10 @@ class User extends BDD
 
 
     if ($password != $password_confirm) {
-      echo "Les mots de passe ne correspondent pas";
-      return false;
+      return "Les mots de passe ne correspondent pas";
     }
     if ($this->loginVerification($login)) {
-      echo "Ce login est déjà utilisé";
-      return false;
+      return "Ce login est déjà utilisé";
     }
 
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -49,9 +45,9 @@ class User extends BDD
       ":password" => $password
     ]);
     if ($stmt->rowCount() > 0) {
-      return true;
+      return "ok";
     } else {
-      return false;
+      return "nop";
     }
   }
 
@@ -64,6 +60,27 @@ class User extends BDD
       return true;
     } else {
       return false;
+    }
+  }
+
+  public function login(string $login, string $password): string
+  {
+    $login = trim(htmlspecialchars($login));
+    $password = trim(htmlspecialchars($password));
+
+    $sql = "SELECT * FROM Users WHERE login = :login";
+    $stmt = $this->bdd->prepare($sql);
+    $stmt->execute([":login" => $login]);
+    $user = $stmt->fetch(PDO::FETCH_OBJ);
+    if ($user) {
+      if (password_verify($password, $user->password)) {
+        $_SESSION["user"] = $user;
+        return "ok";
+      } else {
+        return "L'un des champs est incorrect";
+      }
+    } else {
+      return "L'un des champs est incorrect";
     }
   }
 }

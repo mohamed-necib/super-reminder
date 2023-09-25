@@ -2,14 +2,13 @@
 
 abstract class BDD
 {
-
     private $db_name = "super_reminder";
     private $db_user = "root";
     private $db_pass = "root";
     private $db_host = "localhost"; //127.0.0.1:8889
     private $pdo;
 
-
+    
     public function __construct()
     {
     }
