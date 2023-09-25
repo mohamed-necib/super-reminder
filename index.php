@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,9 +11,21 @@
   <title>Super Reminder</title>
 </head>
 
-<body></body>
-<div class="body">
+<body>
+  <?php if (isset($_SESSION["user"])){
+    echo "Bonjour " . $_SESSION["user"]->firstname . " " . $_SESSION["user"]->lastname;
+  }
+  ?>
+<div class="register">
   <?php require_once './register.php'; ?>
+</div>
+
+<div class="signin">
+  <?php require_once './signin.php'; ?>
+</div>
+
+<div class="todolist">
+  <?php require_once './todolist.php'; ?>
 </div>
 
 
