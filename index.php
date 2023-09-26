@@ -7,7 +7,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script defer src="./Js/register.js"></script>
+  <!-- <script defer src="./Js/register.js"></script> -->
+  <link rel="stylesheet" href="style.css">
   <title>Super Reminder</title>
 </head>
 
