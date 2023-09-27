@@ -1,35 +1,33 @@
 <?php
 session_start();
-require_once './Class/Task.php';
+require_once './Class/TasksList.php';
 
-//Fin d'une tâche via la classe Task:
-if(isset($_POST["finishTask"])){
-    $id = $_POST["id"];
-    $task = new Task();
-    echo $task->finishTask($id);
+//Création d'une tâche via la classe List:
+if (isset($_POST["addList"])) {
+  $title = $_POST["title"];
+  $user_id = $_SESSION["user"]->id;
+  $list = new TasksList();
+  echo $list->createList($title, $user_id);
+}
+//Fin d'une tâche via la classe List:
+if (isset($_POST["updateList"])) {
+  $id = $_POST["id"];
+  $done = $_POST["finish"];
+  $list = new TasksList();
+  echo $list->finishList($id, $done);
 }
 
-//Suppression d'une tâche via la classe Task:
-if(isset($_POST["deleteTask"])){
-    $id = $_POST["id"];
-    $task = new Task();
-    echo $task->deleteTask($id);
+//Suppression d'une tâche via la classe List:
+if (isset($_POST["deleteList"])) {
+  $id = $_POST["id"];
+  $list = new TasksList();
+  echo $list->deleteList($id);
 }
 
-//Récupération des tâches via la classe Task:
-if(isset($_GET["getTasks"])){
-    $user_id = $_SESSION["user"]->id;
-    $task = new Task();
-    $datas = $task->getTasks($user_id);
-    echo json_encode($datas);
-}
-
-//Création d'une tâche via la classe Task:
-if(isset($_POST["createTask"])){
-    require_once './Class/Task.php';
-    $title = $_POST["title"];
-    $description = $_POST["description"];
-    $user_id = $_SESSION["user"]->id;
-    $task = new Task();
-    echo $task->createTask($title, $description, $user_id);
+//Récupération des tâches via la classe List:
+if (isset($_GET["getLists"])) {
+  $user_id = $_SESSION["user"]->id;
+  $list = new TasksList();
+  $datas = $list->getLists($user_id);
+  echo json_encode($datas);
 }

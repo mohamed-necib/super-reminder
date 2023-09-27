@@ -20,3 +20,8 @@ require_once './Class/User.php';
       $user = new User();
       echo $user->login($login, $password);
    }
+
+   if(isset($_POST["disconnect"])) {
+      $user = new User();
+      $user->logout();
+   }

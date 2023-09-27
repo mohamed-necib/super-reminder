@@ -83,4 +83,10 @@ class User extends BDD
       return "L'un des champs est incorrect";
     }
   }
+
+  public function logout(): void
+  {
+    session_destroy();
+    
+  }
 }
