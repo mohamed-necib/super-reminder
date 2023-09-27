@@ -9,6 +9,15 @@
   box-sizing: border-box;
 }
 
+header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
 /* Container principal */
 .container {
   width: 100%;
@@ -17,13 +26,26 @@
   padding: 10px;
 }
 
+
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  margin: 20px 20px;
+}
+
 /* Container de la Todo */
 .todoapp {
   width: 100%;
   max-width: 540px;
   background: #fff;
-  margin: 100px auto 20px;
-  padding: 40px 30px 70px;
+  margin: 10px auto 0;
+  padding: 20px 20px 30px;
   border-radius: 10px;
 }
 
@@ -49,6 +71,32 @@
   margin-bottom: 25px;
 }
 
+.row-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  padding: 0 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 10px;
+  gap: 30px;
+}
+
+.conf-password {
+  width: 100%;
+  text-align: center;
+  background-color: #edeef0;
+}
+
 /* Style des champs à remplir */
 input {
   flex: 1;
@@ -60,19 +108,49 @@ input {
 }
 
 /* Style du CTA */
-button {
+.todocta {
   border: none;
   outline: none;
   background: #ff5945;
-  padding: 16px 50px;
+  padding: 16px 10px;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
 }
 
+/* Style des CTA d'authentification */
+.authentication {
+  border: 2px solid #ff5945;
+  outline: none;
+  background: transparent;
+  padding: 10px 10px;
+  color: #ff5945;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 40px;
+}
+
+/* style du span de redirection */
+.switch {
+  color: #002765;
+  font-size: 12px;
+  margin-right: 12px;
+}
+/* Style des links de rediréction */
+.link {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ff5945;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 /* Style des tâches */
-ul li{
+ul li {
   list-style: none;
   font-size: 17px;
   padding: 12px 8px 12px 50px;
@@ -81,24 +159,63 @@ ul li{
   position: relative;
 }
 
-ul li::before{
-  content: '';
+ul li::before {
+  content: "";
   position: absolute;
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  background-image: url('images/unchecked.png');
+  background-image: url("images/unchecked.png");
   background-size: cover;
   background-position: center;
   top: 12px;
   left: 8px;
 }
 
-ul li.checked{
+ul li.checked {
   color: #555;
   text-decoration: line-through;
 }
 
-ul li.checked::before{
-  background-image: url('images/checked.png');
+ul li.checked::before {
+  background-image: url("images/checked.png");
+}
+
+.register {
+  width: 100%;
+  display: none;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.register input {
+  border-radius: 40px;
+}
+
+.register .row-wrap input[type="text"],
+.register .row-wrap input[type="password"] {
+  background: #edeef0;
+  max-width: 45%;
+}
+
+.register form input[type="submit"] {
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }
