@@ -9,7 +9,6 @@ abstract class BDD
     private $db_host = "localhost";
     private $pdo;
 
-    protected $bdd;
 
     public function __construct($db_name, $db_user, $db_pass, $db_host)
     {
