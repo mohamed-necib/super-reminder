@@ -20,28 +20,29 @@ session_start();
   <?php endif ?>
 
   <div class="container">
-    <div class="todoapp">
-      <?php if (isset($_SESSION["user"])) : ?>
-        <div class="todolist">
-          <?php require_once './components/todolist.php'; ?>
-        </div>
-        <script src="./Js/deconnect.js"></script>
-      <?php else : ?>
-        <div class="wrapper">
-          <div class="register">
-            <?php require_once './components/register.php'; ?>
-          </div>
+    <?php if (isset($_SESSION["user"])) : ?>
+      <div class="todolist">
+        <?php require_once './components/todolist.php'; ?>
+      </div>
+      <script src="./Js/deconnect.js"></script>
+    <?php else : ?>
+      <div class="wrapper">
 
-          <div class="signin">
-            <?php require_once './components/signin.php'; ?>
-          </div>
-
-          <div class="switch-container">
-            <span class="switch" id="spanSwitch">Pas encore inscrit?</span><button id="switch" class="link">S'inscrire</button>
-          </div>
+        <div class="register">
+          <?php require_once './components/register.php'; ?>
         </div>
-      <?php endif ?>
-    </div>
+
+        <div class="signin">
+          <?php require_once './components/signin.php'; ?>
+        </div>
+
+        <div class="switch-container">
+          <span class="switch" id="spanSwitch">Pas encore inscrit?</span><button id="switch" class="link">S'inscrire</button>
+        </div>
+
+      </div>
+    <?php endif ?>
+
   </div>
 
 

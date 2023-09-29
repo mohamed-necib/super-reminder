@@ -1,12 +1,28 @@
 /* Import Font GOOGLE */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* Définition des variables de couleur */
+:root {
+  --cta-color: #df4255;
+  --orange: #ff5945;
+  --pill-urgent: #c75c5f;
+  --pill-important: #9c9cff;
+  --pill-nonImportant: #37ba9e;
+  --card-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.83);
+}
+
 /* Réinitialisation des styles de base */
 * {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  width: 100%;
+  min-height: 100vh;
 }
 
 header {
@@ -21,22 +37,25 @@ header {
 /* Container principal */
 .container {
   width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
   padding: 10px;
 }
-
 
 .title-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0;
+  padding: 10px;
   border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-  margin: 20px 20px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* Container de la Todo */
@@ -47,6 +66,7 @@ header {
   margin: 10px auto 0;
   padding: 20px 20px 30px;
   border-radius: 10px;
+  box-shadow: var(--card-shadow);
 }
 
 .todoapp h2 {
@@ -111,21 +131,21 @@ input {
 .todocta {
   border: none;
   outline: none;
-  background: #ff5945;
-  padding: 16px 10px;
+  background: var(--cta-color);
+  padding: 12px 10px;
   color: #fff;
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
   border-radius: 40px;
 }
 
 /* Style des CTA d'authentification */
 .authentication {
-  border: 2px solid #ff5945;
+  border: 2px solid var(--cta-color);
   outline: none;
   background: transparent;
   padding: 10px 10px;
-  color: #ff5945;
+  color: var(--cta-color);
   cursor: pointer;
   font-size: 16px;
   font-weight: bolder;
@@ -151,12 +171,19 @@ input {
 
 /* Style des tâches */
 ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 12px 8px 12px 54px;
   user-select: none;
   cursor: pointer;
   position: relative;
+  border: 1px solid #8080801a;
+  border-radius: 40px;
+  margin-bottom: 12px;
+  box-shadow: 1px 6px 10px -9px rgba(0, 0, 0, 0.83);
 }
 
 ul li::before {
@@ -169,7 +196,7 @@ ul li::before {
   background-size: cover;
   background-position: center;
   top: 12px;
-  left: 8px;
+  left: 18px;
 }
 
 ul li.checked {
@@ -181,37 +208,139 @@ ul li.checked::before {
   background-image: url("images/checked.png");
 }
 
+.title-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cross-list {
+  line-height: 40px;
+  text-align: center;
+  font-size: 22px;
+  color: #555;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.formTask {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.selectTask {
+  padding: 12px 10px;
+  font-size: 12px;
+  border-radius: 20px 0 0 20px;
+  border: 1px solid var(--cta-color);
+}
+
+.addTask {
+  width: 23px;
+  height: 44.5px;
+  border: none;
+  border-radius: 0 40px 40px 0;
+  outline: none;
+  background-color: var(--cta-color);
+  color: #fff;
+  padding: 6px;
+}
+
+.cross {
+  position: absolute;
+  right: 25px;
+  top: 5px;
+  font-size: 22px;
+  color: #555;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.cross:hover,
+.cross-list:hover {
+  background: #edeef0;
+  border-radius: 50%;
+}
+
+.pill {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 23px;
+  border-radius: 0 40px 40px 0px;
+}
+
+.pill-1 {
+  background-color: var(--pill-urgent);
+}
+.pill-2 {
+  background-color: var(--pill-important);
+}
+.pill-3 {
+  background-color: var(--pill-nonImportant);
+}
+
 .register {
   width: 100%;
+  padding-top: 10px;
   display: none;
 }
 
-.register form {
+.signin {
+  width: 100%;
+  padding-top: 10px;
+}
+
+.register form,
+.signin form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.register input {
+.register input,
+.signin input {
   border-radius: 40px;
 }
 
 .register .row-wrap input[type="text"],
-.register .row-wrap input[type="password"] {
+.register .row-wrap input[type="password"],
+.signin .row-wrap input[type="text"],
+.signin .row-wrap input[type="password"] {
   background: #edeef0;
   max-width: 45%;
 }
 
-.register form input[type="submit"] {
+.register form input[type="submit"],
+.signin form input[type="submit"] {
   align-items: center;
   justify-content: center;
 }
 
 .wrapper {
+  max-width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  padding: 10px;
+  margin: auto;
+  margin-top: 25vh;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .switch-container {
@@ -219,3 +348,22 @@ ul li.checked::before {
   justify-content: center;
   margin-top: 5%;
 }
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.list-card {
+  flex-grow: 1;
+  flex-basis: 200px;
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  margin: 10px auto 0;
+  padding: 20px 20px 30px;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+}
+
+

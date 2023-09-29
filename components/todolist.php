@@ -1,14 +1,14 @@
 <div class="todoapp">
   <h2>To-Do List<img src="images/todoLogo.png" alt="logo"></h2>
   <form method="post" id="formList" class="row">
-    <input type="text" name="title" placeholder="Ajouter une tâche" id="input-box">
+    <input type="text" name="title" placeholder="Ajouter une liste" id="input-box">
     <input id="add-button" class="todocta" value="Ajouter" type="submit">
   </form>
-  <ul id="list-container">
+</div>
 
-  </ul>
+<div id="list-container" class="list-container">
 </div>
 
 
 
-<script src="Js/task.js"></script>
+<script defer src="Js/task.js"></script>
